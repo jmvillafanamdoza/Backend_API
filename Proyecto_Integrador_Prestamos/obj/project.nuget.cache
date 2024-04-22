@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "3EPAJUn+dpPQhJ+Sroc7YTXBQtizMF5MBjRt7dO1Inms//u6PRCbbx9dNVu3sA3lplTnXxftNxx7TMxEPOU81A==",
+  "dgSpecHash": "HGTvVBwLOt1lKJzsX1MdbdhqPM+PfJSmnFVSjQBj+10hpuw6EW3mGMFWfC9S5O5+VufmSF3/ep8Kkih4EG3sjg==",
   "success": true,
-  "projectFilePath": "D:\\CIBERTEC\\2024-I\\PROYECTO INTEGRADOR\\Prestamos_Proyecto_Integrador\\angular_auth\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
+  "projectFilePath": "C:\\Users\\jmvil\\OneDrive\\Escritorio\\proyecto\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jmvil\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
-    "C:\\Users\\jmvil\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.9\\microsoft.aspnetcore.authentication.jwtbearer.6.0.9.nupkg.sha512",
+    "C:\\Users\\jmvil\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.11\\microsoft.aspnetcore.authentication.jwtbearer.6.0.11.nupkg.sha512",
     "C:\\Users\\jmvil\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",
     "C:\\Users\\jmvil\\.nuget\\packages\\microsoft.data.sqlclient\\2.1.4\\microsoft.data.sqlclient.2.1.4.nupkg.sha512",
     "C:\\Users\\jmvil\\.nuget\\packages\\microsoft.data.sqlclient.sni.runtime\\2.1.1\\microsoft.data.sqlclient.sni.runtime.2.1.1.nupkg.sha512",

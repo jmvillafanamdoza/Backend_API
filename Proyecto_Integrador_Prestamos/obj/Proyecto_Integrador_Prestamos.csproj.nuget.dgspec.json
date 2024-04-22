@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\CIBERTEC\\2024-I\\PROYECTO INTEGRADOR\\Prestamos_Proyecto_Integrador\\angular_auth\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj": {}
+    "C:\\Users\\jmvil\\OneDrive\\Escritorio\\proyecto\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj": {}
   },
   "projects": {
-    "D:\\CIBERTEC\\2024-I\\PROYECTO INTEGRADOR\\Prestamos_Proyecto_Integrador\\angular_auth\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj": {
+    "C:\\Users\\jmvil\\OneDrive\\Escritorio\\proyecto\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\CIBERTEC\\2024-I\\PROYECTO INTEGRADOR\\Prestamos_Proyecto_Integrador\\angular_auth\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
+        "projectUniqueName": "C:\\Users\\jmvil\\OneDrive\\Escritorio\\proyecto\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
         "projectName": "Proyecto_Integrador_Prestamos",
-        "projectPath": "D:\\CIBERTEC\\2024-I\\PROYECTO INTEGRADOR\\Prestamos_Proyecto_Integrador\\angular_auth\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
+        "projectPath": "C:\\Users\\jmvil\\OneDrive\\Escritorio\\proyecto\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
         "packagesPath": "C:\\Users\\jmvil\\.nuget\\packages\\",
-        "outputPath": "D:\\CIBERTEC\\2024-I\\PROYECTO INTEGRADOR\\Prestamos_Proyecto_Integrador\\angular_auth\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos\\obj\\",
+        "outputPath": "C:\\Users\\jmvil\\OneDrive\\Escritorio\\proyecto\\Backend_API\\Proyecto_Integrador_Prestamos\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jmvil\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -42,7 +42,7 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[6.0.9, )"
+              "version": "[6.0.11, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
