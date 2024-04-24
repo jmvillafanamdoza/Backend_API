@@ -10,6 +10,7 @@ using System.Text.RegularExpressions;
 using System;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Proyecto_Integrador_Prestamos.Controllers
 {
@@ -23,6 +24,7 @@ namespace Proyecto_Integrador_Prestamos.Controllers
             _appDBContext = appDBContext;
         }
 
+        
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] User userObj)
         {
@@ -31,24 +33,24 @@ namespace Proyecto_Integrador_Prestamos.Controllers
                 return BadRequest();
             }
 
-            var userVerificar = await _appDBContext.Users.FirstOrDefaultAsync(x => x.UserName == userObj.UserName); //&& x.Password == userObj.Password
+            var user = await _appDBContext.Users.FirstOrDefaultAsync(x => x.UserName == userObj.UserName); //&& x.Password == userObj.Password
 
 
 
-            if (userVerificar == null)
+            if (user == null)
             {
                 return NotFound(new {Message = "User Not Found!"});
             }
-            if(!PasswordHasher.VerifyPassword(userObj.Password, userVerificar.Password))
+            if(!PasswordHasher.VerifyPassword(userObj.Password, user.Password))
             {
                 return BadRequest(new { Message = "Password is Incorrect" });
             }
 
-            userVerificar.Token = CreateJWToken(userVerificar);
+            user.Token = CreateJWToken(user);
 
             return Ok(new
             {
-                Token = userVerificar.Token,
+                Token = user.Token,
                 Message = "Login Success!"
             });;
 
@@ -152,13 +154,15 @@ namespace Proyecto_Integrador_Prestamos.Controllers
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = identity,
-                Expires = DateTime.Now.AddDays(1),
+                NotBefore = DateTime.UtcNow, // Ensure that 'NotBefore' is set to the current UTC time
+                Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = credentials
             };
             var token = jwtTokenHandler.CreateToken(tokenDescriptor);
             return jwtTokenHandler.WriteToken(token);
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<User>> GetAllUsers()
         {
