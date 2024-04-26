@@ -92,14 +92,41 @@ namespace Proyecto_Integrador_Prestamos.Controllers
             }
 
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
-            userObj.Role = "User";
+            userObj.Role = "Inversionista";
             userObj.Token = "";
             await _appDBContext.Users.AddAsync(userObj);
             await _appDBContext.SaveChangesAsync();
+
+            if (userObj.Role == "Inversionista")
+            {
+                Inversionista inversionista = new Inversionista();
+                inversionista.Nombre = userObj.FirstName;
+                inversionista.Apellido = userObj.LastName;
+                inversionista.Role = userObj.Role;
+                await _appDBContext.Inversionistas.AddAsync(inversionista);
+                await _appDBContext.SaveChangesAsync();
+            }
+            //if (userObj.Role == "JefePrestamista")
+            //{
+            //    JefePrestamista jefePrestamista = new Inversionista();
+               
+            //}
+            //if (userObj.Role == "Prestamista")
+            //{
+            //    Inversionista inversionista = new Inversionista();
+             
+            //}
+            //if (userObj.Role == "Prestatario")
+            //{
+            //    Inversionista inversionista = new Inversionista();
+                
+            //}
+
             return Ok(new 
             {
                 Message = "User Registered!"
             });
+             
              
         }
 

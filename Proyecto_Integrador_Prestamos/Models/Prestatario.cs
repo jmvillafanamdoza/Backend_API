@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecto_Integrador_Prestamos.Models
 {
@@ -14,5 +15,11 @@ namespace Proyecto_Integrador_Prestamos.Models
         public string Apellidos { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
+        public string Role { get; set; }
+
+        // Foreign Key para el Prestamista que lo creó
+        public int PrestamistaId { get; set; }
+        [ForeignKey("PrestamistaId")]
+        public Prestamista Prestamista { get; set; }
     }
 }
