@@ -35,6 +35,12 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Dni")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Nombre")
                         .HasColumnType("nvarchar(max)");
 
@@ -42,9 +48,6 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sede")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("idInversionista");
@@ -66,6 +69,12 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Dni")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("InversionistaId")
                         .HasColumnType("int");
 
@@ -78,12 +87,7 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.Property<string>("Sede")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Telefono")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("idJefePrestamista");
-
-                    b.HasIndex("InversionistaId");
 
                     b.ToTable("JefesPrestamistas", (string)null);
                 });
@@ -102,6 +106,12 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Dni")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("JefePrestamistaId")
                         .HasColumnType("int");
 
@@ -114,12 +124,7 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.Property<string>("Sede")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Telefono")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("idPrestamista");
-
-                    b.HasIndex("JefePrestamistaId");
 
                     b.ToTable("Prestamistas", (string)null);
                 });
@@ -192,8 +197,6 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     b.HasKey("IdPrestatario");
 
-                    b.HasIndex("PrestamistaId");
-
                     b.ToTable("Prestatario", (string)null);
                 });
 
@@ -221,6 +224,9 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUser"), 1L, 1);
 
+                    b.Property<string>("Direccion")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Dni")
                         .HasColumnType("nvarchar(max)");
 
@@ -236,7 +242,13 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("PrimarySid")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Role")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Sede")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Token")
@@ -248,54 +260,6 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.HasKey("idUser");
 
                     b.ToTable("users", (string)null);
-                });
-
-            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.JefePrestamista", b =>
-                {
-                    b.HasOne("Proyecto_Integrador_Prestamos.Models.Inversionista", "Inversionista")
-                        .WithMany("JefesPrestamistas")
-                        .HasForeignKey("InversionistaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Inversionista");
-                });
-
-            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Prestamista", b =>
-                {
-                    b.HasOne("Proyecto_Integrador_Prestamos.Models.JefePrestamista", "JefePrestamista")
-                        .WithMany("Prestamistas")
-                        .HasForeignKey("JefePrestamistaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("JefePrestamista");
-                });
-
-            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Prestatario", b =>
-                {
-                    b.HasOne("Proyecto_Integrador_Prestamos.Models.Prestamista", "Prestamista")
-                        .WithMany("Prestatarios")
-                        .HasForeignKey("PrestamistaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Prestamista");
-                });
-
-            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Inversionista", b =>
-                {
-                    b.Navigation("JefesPrestamistas");
-                });
-
-            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.JefePrestamista", b =>
-                {
-                    b.Navigation("Prestamistas");
-                });
-
-            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Prestamista", b =>
-                {
-                    b.Navigation("Prestatarios");
                 });
 #pragma warning restore 612, 618
         }

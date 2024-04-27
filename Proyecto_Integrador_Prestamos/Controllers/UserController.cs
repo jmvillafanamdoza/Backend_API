@@ -92,34 +92,67 @@ namespace Proyecto_Integrador_Prestamos.Controllers
             }
 
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
-            userObj.Role = "Inversionista";
+            userObj.Role = userObj.Role;
             userObj.Token = "";
             await _appDBContext.Users.AddAsync(userObj);
             await _appDBContext.SaveChangesAsync();
 
-            if (userObj.Role == "Inversionista")
-            {
-                Inversionista inversionista = new Inversionista();
-                inversionista.Nombre = userObj.FirstName;
-                inversionista.Apellido = userObj.LastName;
-                inversionista.Role = userObj.Role;
-                await _appDBContext.Inversionistas.AddAsync(inversionista);
-                await _appDBContext.SaveChangesAsync();
-            }
-            //if (userObj.Role == "JefePrestamista")
-            //{
-            //    JefePrestamista jefePrestamista = new Inversionista();
-               
-            //}
+            
+                if (userObj.Role == "Inversionista")
+                {
+                    Inversionista inversionista = new Inversionista();
+                    inversionista.Nombre = userObj.FirstName;
+                    inversionista.Apellido = userObj.LastName;
+                    inversionista.Role = userObj.Role;
+                    inversionista.Dni = userObj.Dni;
+                    inversionista.Email = userObj.Email;
+                    inversionista.Sede = userObj.Sede;
+                    inversionista.Direccion = userObj.Direccion;
+                  //inversionista.idInversionista = int.Parse(userObj.PrimarySid);
+                    await _appDBContext.Inversionistas.AddAsync(inversionista);
+                    await _appDBContext.SaveChangesAsync();
+                
+                }
+
+                if (userObj.Role == "JefePrestamista")
+                {
+                    JefePrestamista jefePrestamista = new JefePrestamista();
+
+                    jefePrestamista.Nombre = userObj.FirstName;
+                    jefePrestamista.Apellido = userObj.LastName;
+                    jefePrestamista.Role = userObj.Role;
+                    jefePrestamista.Dni = userObj.Dni;
+                    jefePrestamista.Email = userObj.Email;
+                    jefePrestamista.Sede = userObj.Sede;
+                    jefePrestamista.Direccion = userObj.Direccion;
+                    //jefePrestamista.InversionistaId = userObj.idUser;
+                    await _appDBContext.JefesPrestamistas.AddAsync(jefePrestamista);
+                    await _appDBContext.SaveChangesAsync();
+                }
+                if (userObj.Role == "Prestamista")
+                {
+                    Prestamista prestamista = new Prestamista();
+
+                    prestamista.Nombre = userObj.FirstName;
+                    prestamista.Apellido = userObj.LastName;
+                    prestamista.Role = userObj.Role;
+                    prestamista.Dni = userObj.Dni;
+                    prestamista.Email = userObj.Email;
+                    prestamista.Sede = userObj.Sede;
+                    prestamista.Direccion = userObj.Direccion;
+                    //jefePrestamista.InversionistaId = userObj.idUser;
+                    await _appDBContext.Prestamistas.AddAsync(prestamista);
+                    await _appDBContext.SaveChangesAsync();
+                }
             //if (userObj.Role == "Prestamista")
             //{
             //    Inversionista inversionista = new Inversionista();
-             
+
             //}
             //if (userObj.Role == "Prestatario")
             //{
             //    Inversionista inversionista = new Inversionista();
-                
+
             //}
 
             return Ok(new 
@@ -173,7 +206,10 @@ namespace Proyecto_Integrador_Prestamos.Controllers
             var identity        = new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.Role, usertoken.Role),
+                new Claim(ClaimTypes.PrimarySid,usertoken.idUser.ToString()),
                 new Claim(ClaimTypes.Name,$"{usertoken.FirstName} {usertoken.LastName}")
+                
+
             });
 
             var credentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
@@ -195,6 +231,17 @@ namespace Proyecto_Integrador_Prestamos.Controllers
         {
             return Ok(await _appDBContext.Users.ToListAsync());
         }
+        //[Authorize]
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<User>> GetUserById(int id)
+        //{
+        //    var user = await _appDBContext.Inversionistas.FindAsync(id);
+        //    if (user == null)
+        //    {
+        //        return NotFound();
+        //    }
+        //    return Ok(user);
+        //}
 
     }
 }

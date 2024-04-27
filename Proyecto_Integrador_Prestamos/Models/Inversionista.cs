@@ -11,12 +11,11 @@ namespace Proyecto_Integrador_Prestamos.Models
         public string Apellido { get; set; }
         public string Sede { get; set; }
         public string Role { get; set; }
-
-
-
-
+        public string Dni { get; set; }
+        public string Email { get; set; }
+        public string Direccion { get; set; }
 
         // Relación uno a muchos con JefePrestamista
-        public virtual ICollection<JefePrestamista> JefesPrestamistas { get; set; }
+        //public virtual ICollection<JefePrestamista> JefesPrestamistas { get; set; }
     }
 }

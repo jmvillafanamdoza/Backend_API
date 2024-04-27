@@ -12,16 +12,17 @@ namespace Proyecto_Integrador_Prestamos.Models
         public string Apellido { get; set; }
         public string Sede { get; set; }
         public string Role { get; set; }
-
-
+        public string Dni { get; set; }
+        public string Email { get; set; }
+        public string Direccion { get; set; }
 
 
         // Foreign Key para el Inversionista que lo creó
         public int InversionistaId { get; set; }
-        [ForeignKey("InversionistaId")]
-        public Inversionista Inversionista { get; set; }
+        //[ForeignKey("InversionistaId")]
+        //public Inversionista Inversionista { get; set; }
 
-        // Relación uno a muchos con Prestamista
-        public virtual ICollection<Prestamista> Prestamistas { get; set; }
+        //// Relación uno a muchos con Prestamista
+        //public virtual ICollection<Prestamista> Prestamistas { get; set; }
     }
 }

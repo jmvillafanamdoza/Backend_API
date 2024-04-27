@@ -17,9 +17,10 @@ namespace Proyecto_Integrador_Prestamos.Models
         public string Telefono { get; set; }
         public string Role { get; set; }
 
-        // Foreign Key para el Prestamista que lo creó
         public int PrestamistaId { get; set; }
-        [ForeignKey("PrestamistaId")]
-        public Prestamista Prestamista { get; set; }
+        // Foreign Key para el Prestamista que lo creó
+        //
+        //[ForeignKey("PrestamistaId")]
+        //public Prestamista Prestamista { get; set; }
     }
 }
