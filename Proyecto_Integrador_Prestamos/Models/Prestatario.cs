@@ -9,18 +9,19 @@ namespace Proyecto_Integrador_Prestamos.Models
     {
         [Key]
         public int IdPrestatario { get; set; }
-        public string NombreUsuario { get; set; }
-        public string Contraseña { get; set; }
-        public string Nombres { get; set; }
-        public string Apellidos { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
+        public string Nombre { get; set; }
+        public string Apellido { get; set; }
+        public string Sede { get; set; }
         public string Role { get; set; }
-
+        public string Dni { get; set; }
+        public string Email { get; set; }
+        public string Direccion { get; set; }
+        public string Estado { get; set; }
+        public int idUser_register { get; set; }
         public int PrestamistaId { get; set; }
-        // Foreign Key para el Prestamista que lo creó
-        //
-        //[ForeignKey("PrestamistaId")]
-        //public Prestamista Prestamista { get; set; }
+
+
+
+
     }
 }

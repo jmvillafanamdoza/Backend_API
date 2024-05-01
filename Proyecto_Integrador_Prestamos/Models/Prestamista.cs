@@ -15,7 +15,9 @@ namespace Proyecto_Integrador_Prestamos.Models
         public string Dni { get; set; }
         public string Email { get; set; }
         public string Direccion { get; set; }
+        public string Estado { get; set; }
         public int JefePrestamistaId { get; set; }
+        public int idUser_register { get; set; }
         // Foreign Key para el JefePrestamista que lo creó
 
         //[ForeignKey("JefePrestamistaId")]
@@ -23,5 +25,6 @@ namespace Proyecto_Integrador_Prestamos.Models
 
         //// Relación uno a muchos con Prestatario
         //public virtual ICollection<Prestatario> Prestatarios { get; set; }
+
     }
 }

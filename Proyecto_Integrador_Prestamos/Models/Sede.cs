@@ -8,6 +8,7 @@ namespace Proyecto_Integrador_Prestamos.Models
         public int idSede { get; set; }
         // ... otras propiedades ...
         public string descripcionSede { get; set; }
+        public string Estado { get; set; }
 
     }
 }

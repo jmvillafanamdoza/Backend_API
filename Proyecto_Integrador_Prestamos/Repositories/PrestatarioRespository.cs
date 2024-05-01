@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Integrador_Prestamos.Repositories;
 using Proyecto_Integrador_Prestamos.Context;
+using Microsoft.Data.SqlClient;
 
 namespace Proyecto_Integrador_Prestamos.Repositories
 {
@@ -9,6 +10,19 @@ namespace Proyecto_Integrador_Prestamos.Repositories
     {
         private readonly AppDBContext dbContext;
 
+        public async Task<int?> GetPrestatarioIdByUserIdAsync(int userId)
+        {
+            var idParam = new SqlParameter("@i_idUser_register", userId);
+            var result = await dbContext.Database
+                .ExecuteSqlRawAsync("EXEC [dbo].[PRPRESTAMO_OBT_Prestatario_xidUser_register] @i_idUser_register", idParam);
+
+            if (result == 0)
+            {
+                return null; // Or throw an exception if expected behavior is not to find any result
+            }
+
+            return (int?)result;
+        }
         public PrestatarioRepository(AppDBContext dbContext)
         {
             this.dbContext = dbContext;

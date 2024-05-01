@@ -13,6 +13,8 @@ namespace Proyecto_Integrador_Prestamos.Models
         public string LastName { get; set; }
         public string Sede { get; set; }
         public string Role { get; set; }
+        public string Estado { get; set; }
+
         public string Dni { get; set; }
         public string Email { get; set; }
         public string Direccion { get; set; }

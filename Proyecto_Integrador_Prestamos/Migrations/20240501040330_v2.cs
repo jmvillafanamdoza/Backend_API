@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
 namespace Proyecto_Integrador_Prestamos.Migrations
 {
-    public partial class v16 : Migration
+    public partial class v2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -19,8 +20,11 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     Sede = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Dni = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    idUser_register = table.Column<int>(type: "int", nullable: false),
+                    idAdmin = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -40,6 +44,8 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     Dni = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    idUser_register = table.Column<int>(type: "int", nullable: false),
                     InversionistaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -60,7 +66,9 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     Dni = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    JefePrestamistaId = table.Column<int>(type: "int", nullable: false)
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    JefePrestamistaId = table.Column<int>(type: "int", nullable: false),
+                    idUser_register = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -73,11 +81,15 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                 {
                     NroPrestamo = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Importe = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    Monto = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    pagoDiario = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    diasDuracion = table.Column<int>(type: "int", nullable: false),
                     Sede = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Moneda = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Cuotas = table.Column<int>(type: "int", nullable: false),
                     Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    fechaIniVigencia = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    fechaFinVigencia = table.Column<DateTime>(type: "datetime2", nullable: false),
                     IdPrestatario = table.Column<int>(type: "int", nullable: false),
                     IdPrestamista = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -92,13 +104,15 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                 {
                     IdPrestatario = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    NombreUsuario = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Contraseña = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Nombres = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Apellidos = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Telefono = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Apellido = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Sede = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Dni = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    idUser_register = table.Column<int>(type: "int", nullable: false),
                     PrestamistaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
@@ -112,7 +126,8 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                 {
                     idSede = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    descripcionSede = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    descripcionSede = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,6 +146,7 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Sede = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Role = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Dni = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Direccion = table.Column<string>(type: "nvarchar(max)", nullable: true),

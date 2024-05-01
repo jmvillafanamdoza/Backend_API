@@ -11,6 +11,8 @@ using System;
 using System.Security.Claims;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
+using Proyecto_Integrador_Prestamos.Repositories;
+using Microsoft.Data.SqlClient;
 
 namespace Proyecto_Integrador_Prestamos.Controllers
 {
@@ -19,12 +21,26 @@ namespace Proyecto_Integrador_Prestamos.Controllers
     public class UserController : ControllerBase
     {
         public readonly AppDBContext _appDBContext;
-        public UserController(AppDBContext appDBContext)
+        private readonly IInversionistaRepository _inversionistaRepository;
+        private readonly IJefePrestamistaRepository _jefePrestamistaRepository;
+        private readonly IPrestamistaRepository _prestamistaRepository;
+        private readonly IUserRepository _userRepository;
+        public UserController(AppDBContext appDBContext
+            ,IInversionistaRepository inversionistaRepository
+            ,IJefePrestamistaRepository jefePrestamistaRepository
+            ,IPrestamistaRepository prestamistaRepository
+            ,IPrestatarioRepository prestatarioRepository
+            ,IUserRepository userRepository)
         {
             _appDBContext = appDBContext;
+            _inversionistaRepository = inversionistaRepository;
+            _jefePrestamistaRepository = jefePrestamistaRepository;
+            _prestamistaRepository = prestamistaRepository;
+            _userRepository = userRepository;
         }
 
-        
+       
+
         [HttpPost("authenticate")]
         public async Task<IActionResult> Authenticate([FromBody] User userObj)
         {
@@ -50,6 +66,7 @@ namespace Proyecto_Integrador_Prestamos.Controllers
 
             return Ok(new
             {
+                Usuario = new { id = user.idUser, rol = user.Role, nombre = user.FirstName },
                 Token = user.Token,
                 Message = "Login Success!"
             });;
@@ -91,13 +108,19 @@ namespace Proyecto_Integrador_Prestamos.Controllers
                 return BadRequest(new  {Message = pass});
             }
 
+            //if(userObj.PrimarySid == null || userObj.PrimarySid == "" || userObj.PrimarySid == "0") {
+            //    userObj.PrimarySid = userObj.idUser.ToString();
+            //}
+
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
-            userObj.Role = userObj.Role;
+            userObj.Role = userObj.Role ?? "Admin";
             userObj.Token = "";
             await _appDBContext.Users.AddAsync(userObj);
             await _appDBContext.SaveChangesAsync();
 
-            
+
+            try
+            {
                 if (userObj.Role == "Inversionista")
                 {
                     Inversionista inversionista = new Inversionista();
@@ -108,16 +131,34 @@ namespace Proyecto_Integrador_Prestamos.Controllers
                     inversionista.Email = userObj.Email;
                     inversionista.Sede = userObj.Sede;
                     inversionista.Direccion = userObj.Direccion;
-                  //inversionista.idInversionista = int.Parse(userObj.PrimarySid);
+                    inversionista.idUser_register = userObj.idUser;
+                    inversionista.idAdmin = int.Parse(userObj.PrimarySid);
+                    // Llamada al repositorio para obtener el InversionistaId
+                    //int? id_Usertable = await _userRepository.GetUserIdByUserIdAsync(int.Parse(userObj.PrimarySid));  // Asumiendo que UserId está disponible
+                    //if (id_Usertable.HasValue)
+                    //{
+                    //    inversionista.id_Usertable = id_Usertable.Value;
+                    //}
+                    //else
+                    //{
+                    //    return BadRequest(new { Message = "No Inversionista found for the given User ID." });
+                    //}
+
                     await _appDBContext.Inversionistas.AddAsync(inversionista);
                     await _appDBContext.SaveChangesAsync();
-                
-                }
 
-                if (userObj.Role == "JefePrestamista")
+                    return Ok(new { Message = "Inverionista Registered!" });
+                }      
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { Message = ex.Message }); 
+            }
+
+            if (userObj.Role == "JefePrestamista")
                 {
                     JefePrestamista jefePrestamista = new JefePrestamista();
-
+                                                
                     jefePrestamista.Nombre = userObj.FirstName;
                     jefePrestamista.Apellido = userObj.LastName;
                     jefePrestamista.Role = userObj.Role;
@@ -125,10 +166,24 @@ namespace Proyecto_Integrador_Prestamos.Controllers
                     jefePrestamista.Email = userObj.Email;
                     jefePrestamista.Sede = userObj.Sede;
                     jefePrestamista.Direccion = userObj.Direccion;
-                    //jefePrestamista.InversionistaId = userObj.idUser;
-                    await _appDBContext.JefesPrestamistas.AddAsync(jefePrestamista);
-                    await _appDBContext.SaveChangesAsync();
+                    jefePrestamista.idUser_register = userObj.idUser;
+                // Llamada al repositorio para obtener el InversionistaId
+                int? inversionistaId = await _inversionistaRepository.GetInversionistaIdByUserIdAsync(int.Parse(userObj.PrimarySid));  // Asumiendo que UserId está disponible
+                if (inversionistaId.HasValue)
+                {
+                    jefePrestamista.InversionistaId = inversionistaId.Value;
                 }
+                else
+                {
+                    return BadRequest(new { Message = "No Inversionista found for the given User ID." });
+                }
+
+                await _appDBContext.JefesPrestamistas.AddAsync(jefePrestamista);
+                await _appDBContext.SaveChangesAsync();
+
+                        return Ok(new{ Message = "JefePrestamista Registered!"});
+                }
+
                 if (userObj.Role == "Prestamista")
                 {
                     Prestamista prestamista = new Prestamista();
@@ -140,23 +195,44 @@ namespace Proyecto_Integrador_Prestamos.Controllers
                     prestamista.Email = userObj.Email;
                     prestamista.Sede = userObj.Sede;
                     prestamista.Direccion = userObj.Direccion;
-                    //jefePrestamista.InversionistaId = userObj.idUser;
+                    prestamista.idUser_register = userObj.idUser;
+                // Llamada al repositorio para obtener el InversionistaId
+                int? jefePrestamistaId = await _jefePrestamistaRepository.GetJefePrestamistaIdByUserIdAsync(int.Parse(userObj.PrimarySid));  // Asumiendo que UserId está disponible
+                    if (jefePrestamistaId.HasValue)
+                    {
+                    prestamista.JefePrestamistaId = jefePrestamistaId.Value;
+                    }
+                    else
+                    {
+                        return BadRequest(new { Message = "No Jefe Prestamista found for the given User ID." });
+                    }
+
                     await _appDBContext.Prestamistas.AddAsync(prestamista);
                     await _appDBContext.SaveChangesAsync();
+                        return Ok(new
+                        {
+                            Message = "Prestamista Registered!"
+                        });
                 }
-            //if (userObj.Role == "Prestamista")
-            //{
-            //    Inversionista inversionista = new Inversionista();
+                //if (userObj.Role == "Prestatario")
+                //{
+                //    Prestatario prestatario = new Prestatario();
 
-            //}
-            //if (userObj.Role == "Prestatario")
-            //{
-            //    Inversionista inversionista = new Inversionista();
-
-            //}
+                //    prestamista.Nombre = userObj.FirstName;
+                //    prestamista.Apellido = userObj.LastName;
+                //    prestamista.Role = userObj.Role;
+                //    prestamista.Dni = userObj.Dni;
+                //    prestamista.Email = userObj.Email;
+                //    prestamista.Sede = userObj.Sede;
+                //    prestamista.Direccion = userObj.Direccion;
+                //    //jefePrestamista.InversionistaId = userObj.idUser;
+                //    await _appDBContext.Prestamistas.AddAsync(prestamista);
+                //    await _appDBContext.SaveChangesAsync();
+                //}
 
             return Ok(new 
             {
+
                 Message = "User Registered!"
             });
              
@@ -206,7 +282,7 @@ namespace Proyecto_Integrador_Prestamos.Controllers
             var identity        = new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.Role, usertoken.Role),
-                new Claim(ClaimTypes.PrimarySid,usertoken.idUser.ToString()),
+             // new Claim(ClaimTypes.PrimarySid,usertoken.idUser.ToString()),
                 new Claim(ClaimTypes.Name,$"{usertoken.FirstName} {usertoken.LastName}")
                 
 
@@ -231,17 +307,6 @@ namespace Proyecto_Integrador_Prestamos.Controllers
         {
             return Ok(await _appDBContext.Users.ToListAsync());
         }
-        //[Authorize]
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult<User>> GetUserById(int id)
-        //{
-        //    var user = await _appDBContext.Inversionistas.FindAsync(id);
-        //    if (user == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return Ok(user);
-        //}
-
+       
     }
 }

@@ -19,9 +19,9 @@ namespace Proyecto_Integrador_Prestamos.Controllers
 
         [Authorize]
         [HttpGet]
-        public async Task<ActionResult<JefePrestamista>> GetAllUsers()
+        public async Task<ActionResult<Prestamista>> GetAllUsers()
         {
-            return Ok(await _appDBContext.JefesPrestamistas.ToListAsync());
+            return Ok(await _appDBContext.Prestamistas.ToListAsync());
         }
 
     }

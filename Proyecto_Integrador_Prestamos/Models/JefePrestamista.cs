@@ -15,6 +15,8 @@ namespace Proyecto_Integrador_Prestamos.Models
         public string Dni { get; set; }
         public string Email { get; set; }
         public string Direccion { get; set; }
+        public string Estado { get; set; }
+        public int idUser_register { get; set; }
 
 
         // Foreign Key para el Inversionista que lo creó
