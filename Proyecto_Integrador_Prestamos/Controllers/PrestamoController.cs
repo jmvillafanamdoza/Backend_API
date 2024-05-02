@@ -23,9 +23,20 @@ namespace Proyecto_Integrador_Prestamos.Controllers
 
         [HttpPost]
         [Route("CrearPrestamo")]
-        public async Task<ActionResult<Prestamo>> CreatePrestamo(Prestamo prestamo)
+        public async Task<ActionResult<Prestamo>> CreatePrestamo([FromBody] Prestamo prestamo)
         {
-            return StatusCode(StatusCodes.Status201Created, await prestamoRepository.CreatePrestamo(prestamo));
+            try
+            {
+                if (prestamo == null) return BadRequest("Invalid data");
+
+                var created = await prestamoRepository.CreatePrestamo(prestamo);
+                return CreatedAtAction(nameof(CreatePrestamo), new { id = created.NroPrestamo }, created);
+            }
+            catch (Exception ex)
+            {
+                // Log the exception detail
+                return StatusCode(500, "Internal Server Error: " + ex.Message);
+            }
 
         }
 

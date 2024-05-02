@@ -9,19 +9,24 @@ namespace Proyecto_Integrador_Prestamos.Repositories
     public class PrestatarioRepository : IPrestatarioRepository
     {
         private readonly AppDBContext dbContext;
-
+        
         public async Task<int?> GetPrestatarioIdByUserIdAsync(int userId)
         {
-            var idParam = new SqlParameter("@i_idUser_register", userId);
-            var result = await dbContext.Database
-                .ExecuteSqlRawAsync("EXEC [dbo].[PRPRESTAMO_OBT_Prestatario_xidUser_register] @i_idUser_register", idParam);
-
-            if (result == 0)
+            using (var command = dbContext.Database.GetDbConnection().CreateCommand())
             {
-                return null; // Or throw an exception if expected behavior is not to find any result
-            }
+                command.CommandText = "EXEC [dbo].[PRPRESTAMO_OBT_Prestatario_xidUser_register] @i_idUser_register";
+                command.Parameters.Add(new SqlParameter("@i_idUser_register", userId));
 
-            return (int?)result;
+                dbContext.Database.OpenConnection();
+                var result = await command.ExecuteScalarAsync();
+                dbContext.Database.CloseConnection();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return Convert.ToInt32(result);
+                }
+                return null;
+            }
         }
         public PrestatarioRepository(AppDBContext dbContext)
         {
