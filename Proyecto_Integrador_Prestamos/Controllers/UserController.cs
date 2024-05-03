@@ -64,6 +64,7 @@ namespace Proyecto_Integrador_Prestamos.Controllers
 
             user.Token = CreateJWToken(user);
 
+
             return Ok(new
             {
                 Usuario = new { id = user.idUser, rol = user.Role, nombre = user.FirstName },
