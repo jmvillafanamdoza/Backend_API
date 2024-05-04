@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using Proyecto_Integrador_Prestamos.Repositories;
 using System;
 using Proyecto_Integrador_Prestamos.Context;
-using Microsoft.Data.SqlClient;
 
 namespace Proyecto_Integrador_Prestamos.Repositories
 {
@@ -15,32 +14,11 @@ namespace Proyecto_Integrador_Prestamos.Repositories
         {
             this.dbContext = dbContext;
         }
-
         public async Task<Prestamo> CreatePrestamo(Prestamo prestamo)
         {
-            if (prestamo == null) throw new ArgumentNullException(nameof(prestamo));
-            Console.WriteLine($"Monto: {prestamo.Monto}, Fecha Inicio: {prestamo.fechaIniVigencia}, Fecha Fin: {prestamo.fechaFinVigencia}, Días: {prestamo.diasDuracion}, Pago Diario: {prestamo.pagoDiario}, ID Prestatario: {prestamo.IdPrestatario}");
-
-            using (var command = dbContext.Database.GetDbConnection().CreateCommand())
-            {
-                command.CommandText = "EXEC PRPRESTAMO_INS_PRESTAMO @i_Monto, @i_fechaIniVigencia, @i_fechaFinVigencia, @i_diasDuracion, @i_pagoDiario, @i_IdPrestatario";
-                command.Parameters.Add(new SqlParameter("@i_Monto", prestamo.Monto));
-                command.Parameters.Add(new SqlParameter("@i_fechaIniVigencia", prestamo.fechaIniVigencia));
-                command.Parameters.Add(new SqlParameter("@i_fechaFinVigencia", prestamo.fechaFinVigencia));
-                command.Parameters.Add(new SqlParameter("@i_diasDuracion", prestamo.diasDuracion));
-                command.Parameters.Add(new SqlParameter("@i_pagoDiario", prestamo.pagoDiario));
-                command.Parameters.Add(new SqlParameter("@i_IdPrestatario", prestamo.IdPrestatario));
-
-                await dbContext.Database.OpenConnectionAsync();
-                var result = await command.ExecuteScalarAsync();
-                dbContext.Database.CloseConnection();
-
-                if (result != null && result != DBNull.Value)
-                {
-                    prestamo.NroPrestamo = Convert.ToInt32(result);
-                }
-                return prestamo;
-            }
+            dbContext.Prestamos.Add(prestamo);
+            await dbContext.SaveChangesAsync();
+            return prestamo;
         }
 
         public async Task<bool> DeletePrestamo(int nroPrestamo)

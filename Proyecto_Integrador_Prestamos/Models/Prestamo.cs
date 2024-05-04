@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Proyecto_Integrador_Prestamos.Models
 {
@@ -11,14 +12,11 @@ namespace Proyecto_Integrador_Prestamos.Models
         public decimal Monto { get; set; }
         public decimal pagoDiario { get; set; }
         public int diasDuracion { get; set; }
-        public string Sede { get; set; }
-        public string Moneda { get; set; }
-        public int Cuotas { get; set; }
         public string Estado { get; set; }
         public DateTime fechaIniVigencia { get; set; }
         public DateTime fechaFinVigencia { get; set; }
+        public int idPrestatario { get; set; }
+        public int idPrestamista { get; set; }
 
-        public int IdPrestatario { get; set; }
-        public string IdPrestamista { get; set; }
     }
 }

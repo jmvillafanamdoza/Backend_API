@@ -8,23 +8,16 @@ namespace Proyecto_Integrador_Prestamos.Models
         [Key]
         public int idPrestamista { get; set; }
         // ... otras propiedades ...
-        public string Nombre { get; set; }
-        public string Apellido { get; set; }
-        public string Sede { get; set; }
-        public string Role { get; set; }
+        public int idSede { get; set; }
         public string Dni { get; set; }
-        public string Email { get; set; }
         public string Direccion { get; set; }
         public string Estado { get; set; }
-        public int JefePrestamistaId { get; set; }
-        public int idUser_register { get; set; }
-        // Foreign Key para el JefePrestamista que lo creó
+        public int idUser { get; set; }
 
-        //[ForeignKey("JefePrestamistaId")]
-        //public JefePrestamista JefePrestamista { get; set; }
-
-        //// Relación uno a muchos con Prestatario
-        //public virtual ICollection<Prestatario> Prestatarios { get; set; }
+        [ForeignKey("idUser")]
+        public User User { get; set; }
+        [ForeignKey("idSede")]
+        public Sede Sede { get; set; }
 
     }
 }

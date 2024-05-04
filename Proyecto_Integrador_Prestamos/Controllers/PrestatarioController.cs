@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 
 namespace Proyecto_Integrador_Prestamos.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class PrestatarioController : ControllerBase
     {
         private readonly IPrestatarioRepository prestatarioRepository;
@@ -13,6 +15,13 @@ namespace Proyecto_Integrador_Prestamos.Controllers
         {
             this.prestatarioRepository = prestatarioRepository;
         }
+
+        [HttpGet("getPrestatarioByCreatorUser")]
+        public async Task<ActionResult<IEnumerable<Prestamista>>> GetPrestatarioByCreatorUser(string creatorUser)
+        {
+            return StatusCode(StatusCodes.Status200OK, await prestatarioRepository.GetPrestatarioByCreatorUser(creatorUser));
+        }
+
         [HttpGet]
         [Route("GetPrestatario")]
         public async Task<ActionResult<IEnumerable<Prestatario>>> GetPrestatario()
@@ -24,6 +33,7 @@ namespace Proyecto_Integrador_Prestamos.Controllers
         [Route("CrearPrestatario")]
         public async Task<ActionResult<Prestatario>> CreatePrestatario(Prestatario prestatario)
         {
+            prestatario.Estado = "Activo";
             return StatusCode(StatusCodes.Status201Created, await prestatarioRepository.CreatePrestatario(prestatario));
 
         }

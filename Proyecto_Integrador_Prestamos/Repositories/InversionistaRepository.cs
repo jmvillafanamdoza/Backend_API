@@ -34,8 +34,38 @@ namespace Proyecto_Integrador_Prestamos.Repositories
                 return null;
             }
         }
-       
-      
+        public async Task<Inversionista> CreateInversionista(Inversionista inversionista)
+        {
+            _context.Inversionistas.Add(inversionista);
+            await _context.SaveChangesAsync();
+            return inversionista;
+        }
+
+        public async Task<bool> DeleteInversionista(int idInversionista)
+        {
+            var inversionista = await _context.Inversionistas.FirstOrDefaultAsync(p => p.idInversionista == idInversionista);
+            if (inversionista == null)
+            {
+                return false;
+            }
+            _context.Inversionistas.Remove(inversionista);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<IEnumerable<Inversionista>> GetInversionista()
+        {
+            return await _context.Inversionistas.ToListAsync();
+        }
+
+        public async Task<Inversionista> UpdateInversionista(Inversionista inversionista)
+        {
+            _context.Inversionistas.Update(inversionista);
+            await _context.SaveChangesAsync();
+            return inversionista;
+        }
+
+
 
 
     }

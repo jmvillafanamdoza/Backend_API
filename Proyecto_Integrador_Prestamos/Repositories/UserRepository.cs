@@ -1,6 +1,7 @@
 ﻿using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Integrador_Prestamos.Context;
+using Proyecto_Integrador_Prestamos.Models;
 
 namespace Proyecto_Integrador_Prestamos.Repositories
 {
@@ -10,6 +11,17 @@ namespace Proyecto_Integrador_Prestamos.Repositories
         public UserRepository(AppDBContext context)
         {
             _context = context ?? throw new ArgumentNullException(nameof(context));
+        }
+
+        public async Task<User> GetUserById(int userId)
+        {
+            var user = await _context.Users.Where(p => p.idUser == userId).FirstOrDefaultAsync();
+
+            if (user == null)
+            {
+                return null;
+            }
+            return user;
         }
 
         //metodos para llamar desde el UserController

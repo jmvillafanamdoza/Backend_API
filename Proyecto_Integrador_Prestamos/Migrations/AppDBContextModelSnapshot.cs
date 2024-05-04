@@ -30,37 +30,26 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idInversionista"), 1L, 1);
 
-                    b.Property<string>("Apellido")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dni")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sede")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("idAdmin")
+                    b.Property<int>("idSede")
                         .HasColumnType("int");
 
-                    b.Property<int>("idUser_register")
+                    b.Property<int>("idUser")
                         .HasColumnType("int");
 
                     b.HasKey("idInversionista");
+
+                    b.HasIndex("idSede");
+
+                    b.HasIndex("idUser");
 
                     b.ToTable("Inversionistas", (string)null);
                 });
@@ -73,37 +62,26 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idJefePrestamista"), 1L, 1);
 
-                    b.Property<string>("Apellido")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dni")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("InversionistaId")
+                    b.Property<int>("idSede")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sede")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("idUser_register")
+                    b.Property<int>("idUser")
                         .HasColumnType("int");
 
                     b.HasKey("idJefePrestamista");
+
+                    b.HasIndex("idSede");
+
+                    b.HasIndex("idUser");
 
                     b.ToTable("JefesPrestamistas", (string)null);
                 });
@@ -116,37 +94,26 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idPrestamista"), 1L, 1);
 
-                    b.Property<string>("Apellido")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dni")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("JefePrestamistaId")
+                    b.Property<int>("idSede")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sede")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("idUser_register")
+                    b.Property<int>("idUser")
                         .HasColumnType("int");
 
                     b.HasKey("idPrestamista");
+
+                    b.HasIndex("idSede");
+
+                    b.HasIndex("idUser");
 
                     b.ToTable("Prestamistas", (string)null);
                 });
@@ -159,26 +126,11 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NroPrestamo"), 1L, 1);
 
-                    b.Property<int>("Cuotas")
-                        .HasColumnType("int");
-
                     b.Property<string>("Estado")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("IdPrestamista")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdPrestatario")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Moneda")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Monto")
                         .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Sede")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("diasDuracion")
                         .HasColumnType("int");
@@ -188,6 +140,12 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     b.Property<DateTime>("fechaIniVigencia")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("idPrestamista")
+                        .HasColumnType("int");
+
+                    b.Property<int>("idPrestatario")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("pagoDiario")
                         .HasColumnType("decimal(18,2)");
@@ -205,37 +163,26 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IdPrestatario"), 1L, 1);
 
-                    b.Property<string>("Apellido")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Direccion")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Dni")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Estado")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PrestamistaId")
+                    b.Property<int>("idSede")
                         .HasColumnType("int");
 
-                    b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sede")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("idUser_register")
+                    b.Property<int>("idUser")
                         .HasColumnType("int");
 
                     b.HasKey("IdPrestatario");
+
+                    b.HasIndex("idSede");
+
+                    b.HasIndex("idUser");
 
                     b.ToTable("Prestatario", (string)null);
                 });
@@ -267,12 +214,6 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("idUser"), 1L, 1);
 
-                    b.Property<string>("Direccion")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Dni")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
@@ -288,13 +229,7 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PrimarySid")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Role")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Sede")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Token")
@@ -303,9 +238,88 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("creatorUser")
+                        .HasColumnType("nvarchar(max)");
+
                     b.HasKey("idUser");
 
                     b.ToTable("users", (string)null);
+                });
+
+            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Inversionista", b =>
+                {
+                    b.HasOne("Proyecto_Integrador_Prestamos.Models.Sede", "Sede")
+                        .WithMany()
+                        .HasForeignKey("idSede")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proyecto_Integrador_Prestamos.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sede");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.JefePrestamista", b =>
+                {
+                    b.HasOne("Proyecto_Integrador_Prestamos.Models.Sede", "Sede")
+                        .WithMany()
+                        .HasForeignKey("idSede")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proyecto_Integrador_Prestamos.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sede");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Prestamista", b =>
+                {
+                    b.HasOne("Proyecto_Integrador_Prestamos.Models.Sede", "Sede")
+                        .WithMany()
+                        .HasForeignKey("idSede")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proyecto_Integrador_Prestamos.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sede");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Prestatario", b =>
+                {
+                    b.HasOne("Proyecto_Integrador_Prestamos.Models.Sede", "Sede")
+                        .WithMany()
+                        .HasForeignKey("idSede")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Proyecto_Integrador_Prestamos.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("idUser")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Sede");
+
+                    b.Navigation("User");
                 });
 #pragma warning restore 612, 618
         }

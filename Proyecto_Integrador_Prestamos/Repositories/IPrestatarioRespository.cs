@@ -4,6 +4,7 @@ namespace Proyecto_Integrador_Prestamos.Repositories
 {
     public interface IPrestatarioRepository
     {
+        public Task<IEnumerable<Prestatario>> GetPrestatarioByCreatorUser(string creatorUser);
         Task<int?> GetPrestatarioIdByUserIdAsync(int userId);
         public Task<IEnumerable<Prestatario>> GetPrestatario();
         public Task<Prestatario> CreatePrestatario(Prestatario prestatario);

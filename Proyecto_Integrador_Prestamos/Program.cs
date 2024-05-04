@@ -52,6 +52,7 @@ builder.Services.AddScoped<IInversionistaRepository, InversionistaRepository>();
 builder.Services.AddScoped<IJefePrestamistaRepository, JefePrestamistaRepository>();
 builder.Services.AddScoped<IPrestamistaRepository, PrestamistaRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ISedeRepository, SedeRepository>();
 
 var app = builder.Build();
 

@@ -9,24 +9,19 @@ namespace Proyecto_Integrador_Prestamos.Repositories
     public class PrestatarioRepository : IPrestatarioRepository
     {
         private readonly AppDBContext dbContext;
-        
+
         public async Task<int?> GetPrestatarioIdByUserIdAsync(int userId)
         {
-            using (var command = dbContext.Database.GetDbConnection().CreateCommand())
+            var idParam = new SqlParameter("@i_idUser_register", userId);
+            var result = await dbContext.Database
+                .ExecuteSqlRawAsync("EXEC [dbo].[PRPRESTAMO_OBT_Prestatario_xidUser_register] @i_idUser_register", idParam);
+
+            if (result == 0)
             {
-                command.CommandText = "EXEC [dbo].[PRPRESTAMO_OBT_Prestatario_xidUser_register] @i_idUser_register";
-                command.Parameters.Add(new SqlParameter("@i_idUser_register", userId));
-
-                dbContext.Database.OpenConnection();
-                var result = await command.ExecuteScalarAsync();
-                dbContext.Database.CloseConnection();
-
-                if (result != null && result != DBNull.Value)
-                {
-                    return Convert.ToInt32(result);
-                }
-                return null;
+                return null; // Or throw an exception if expected behavior is not to find any result
             }
+
+            return (int?)result;
         }
         public PrestatarioRepository(AppDBContext dbContext)
         {
@@ -61,6 +56,12 @@ namespace Proyecto_Integrador_Prestamos.Repositories
             dbContext.Prestatarios.Update(prestatario);
             await dbContext.SaveChangesAsync();
             return prestatario;
+        }
+
+        public async Task<IEnumerable<Prestatario>> GetPrestatarioByCreatorUser(string creatorUser)
+        {
+            return await dbContext.Prestatarios.Include(j => j.User).Where(p => p.User.creatorUser == creatorUser).ToListAsync();
+
         }
     }
 }

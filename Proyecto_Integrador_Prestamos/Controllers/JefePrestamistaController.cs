@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Proyecto_Integrador_Prestamos.Context;
 using Proyecto_Integrador_Prestamos.Models;
+using Proyecto_Integrador_Prestamos.Repositories;
 
 namespace Proyecto_Integrador_Prestamos.Controllers
 {
@@ -11,17 +12,46 @@ namespace Proyecto_Integrador_Prestamos.Controllers
     [ApiController]
     public class JefePrestamistaController : ControllerBase
     {
-        public readonly AppDBContext _appDBContext;
-        public JefePrestamistaController(AppDBContext appDBContext)
+        private readonly IJefePrestamistaRepository jefePrestamistaRepository;
+        public JefePrestamistaController(IJefePrestamistaRepository jefePrestamistaRepository)
         {
-            _appDBContext = appDBContext;
+            this.jefePrestamistaRepository = jefePrestamistaRepository;
         }
 
-        [Authorize]
-        [HttpGet]
-        public async Task<ActionResult<Prestamista>> GetAllUsers()
+        [HttpGet("getJefePrestamistaByCreatorUser")]
+        public async Task<ActionResult<IEnumerable<JefePrestamista>>> GetJefePrestamistaByCreatorUser(string creatorUser)
         {
-            return Ok(await _appDBContext.Prestamistas.ToListAsync());
+            return StatusCode(StatusCodes.Status200OK, await jefePrestamistaRepository.GetJefePrestamistaByCreatorUser(creatorUser));
+        }
+
+        [HttpGet]
+        [Route("GetJefePrestamista")]
+        public async Task<ActionResult<IEnumerable<JefePrestamista>>> GetJefePrestamista()
+        {
+            return StatusCode(StatusCodes.Status200OK, await jefePrestamistaRepository.GetJefePrestamista());
+        }
+
+        [HttpPost]
+        [Route("CrearJefePrestamista")]
+        public async Task<ActionResult<JefePrestamista>> CreateJefePrestamista(JefePrestamista jefePrestamista)
+        {
+            jefePrestamista.Estado = "Activo";
+            return StatusCode(StatusCodes.Status201Created, await jefePrestamistaRepository.CreateJefePrestamista(jefePrestamista));
+
+        }
+
+        [HttpPut]
+        [Route("ActualizarJefePrestamista")]
+        public async Task<ActionResult<JefePrestamista>> UpdateJefePrestamista(JefePrestamista jefePrestamista)
+        {
+            return StatusCode(StatusCodes.Status200OK, await jefePrestamistaRepository.UpdateJefePrestamista(jefePrestamista));
+        }
+
+        [HttpDelete]
+        [Route("EliminarJefePrestamista")]
+        public async Task<ActionResult<bool>> DeleteJefePrestamista(int idJefePrestamista)
+        {
+            return StatusCode(StatusCodes.Status200OK, await jefePrestamistaRepository.DeleteJefePrestamista(idJefePrestamista));
         }
 
     }

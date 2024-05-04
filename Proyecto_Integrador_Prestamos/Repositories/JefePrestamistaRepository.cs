@@ -33,6 +33,41 @@ namespace Proyecto_Integrador_Prestamos.Repositories
                 return null;
             }
         }
-    
+        public async Task<JefePrestamista> CreateJefePrestamista(JefePrestamista jefePrestamista)
+        {
+            _context.JefesPrestamistas.Add(jefePrestamista);
+            await _context.SaveChangesAsync();
+            return jefePrestamista;
+        }
+
+        public async Task<bool> DeleteJefePrestamista(int idJefePrestamista)
+        {
+            var jefePrestamista = await _context.JefesPrestamistas.FirstOrDefaultAsync(p => p.idJefePrestamista == idJefePrestamista);
+            if (jefePrestamista == null)
+            {
+                return false;
+            }
+            _context.JefesPrestamistas.Remove(jefePrestamista);
+            await _context.SaveChangesAsync();
+            return true;
+        }
+
+        public async Task<IEnumerable<JefePrestamista>> GetJefePrestamista()
+        {
+            return await _context.JefesPrestamistas.ToListAsync();
+        }
+
+        public async Task<JefePrestamista> UpdateJefePrestamista(JefePrestamista jefePrestamista)
+        {
+            _context.JefesPrestamistas.Update(jefePrestamista);
+            await _context.SaveChangesAsync();
+            return jefePrestamista;
+        }
+
+        public async Task<IEnumerable<JefePrestamista>> GetJefePrestamistaByCreatorUser(string creatorUser)
+        {
+            return await _context.JefesPrestamistas.Include(j => j.User).Where(p => p.User.creatorUser == creatorUser).ToListAsync();
+
+        }
     }
 }
