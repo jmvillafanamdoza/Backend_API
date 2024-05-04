@@ -5,6 +5,7 @@ namespace Proyecto_Integrador_Prestamos.Repositories
     public interface IPrestamoRepository
     {
         public Task<IEnumerable<Prestamo>> GetPrestamo();
+        public Task<IEnumerable<Prestamo>> GetPrestamoByIdPrestatario(int idPrestatario);
         public Task<Prestamo> CreatePrestamo(Prestamo prestamo);
         public Task<Prestamo> UpdatePrestamo(Prestamo prestamo);
         public Task<bool> DeletePrestamo(int nroPrestamo);

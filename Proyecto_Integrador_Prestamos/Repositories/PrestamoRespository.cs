@@ -38,6 +38,11 @@ namespace Proyecto_Integrador_Prestamos.Repositories
             return await dbContext.Prestamos.ToListAsync();
         }
 
+        public async Task<IEnumerable<Prestamo>> GetPrestamoByIdPrestatario(int idPrestatario)
+        {
+            return await dbContext.Prestamos.Where(p => p.idPrestatario == idPrestatario).ToListAsync();
+        }
+
         public async Task<Prestamo> UpdatePrestamo(Prestamo prestamo)
         {
             dbContext.Prestamos.Update(prestamo);
