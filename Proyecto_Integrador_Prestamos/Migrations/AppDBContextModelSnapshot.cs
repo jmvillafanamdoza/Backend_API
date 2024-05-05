@@ -86,6 +86,37 @@ namespace Proyecto_Integrador_Prestamos.Migrations
                     b.ToTable("JefesPrestamistas", (string)null);
                 });
 
+            modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Precio", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("DuracionDias")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("Precio150")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Precio200")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Precio300")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Precio400")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.Property<decimal>("Precio500")
+                        .HasColumnType("decimal(10,2)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Precios");
+                });
+
             modelBuilder.Entity("Proyecto_Integrador_Prestamos.Models.Prestamista", b =>
                 {
                     b.Property<int>("idPrestamista")

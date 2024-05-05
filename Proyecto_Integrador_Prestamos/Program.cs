@@ -53,6 +53,7 @@ builder.Services.AddScoped<IJefePrestamistaRepository, JefePrestamistaRepository
 builder.Services.AddScoped<IPrestamistaRepository, PrestamistaRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ISedeRepository, SedeRepository>();
+builder.Services.AddScoped<IPreciosRepository, PrecioRepository>();
 
 var app = builder.Build();
 

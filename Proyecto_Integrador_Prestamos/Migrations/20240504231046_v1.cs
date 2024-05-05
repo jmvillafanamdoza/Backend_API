@@ -10,6 +10,24 @@ namespace Proyecto_Integrador_Prestamos.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Precios",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    DuracionDias = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Precio150 = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Precio200 = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Precio300 = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Precio400 = table.Column<decimal>(type: "decimal(10,2)", nullable: false),
+                    Precio500 = table.Column<decimal>(type: "decimal(10,2)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Precios", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Prestamo",
                 columns: table => new
                 {
@@ -228,6 +246,9 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
             migrationBuilder.DropTable(
                 name: "JefesPrestamistas");
+
+            migrationBuilder.DropTable(
+                name: "Precios");
 
             migrationBuilder.DropTable(
                 name: "Prestamistas");

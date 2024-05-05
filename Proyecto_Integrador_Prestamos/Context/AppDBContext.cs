@@ -16,6 +16,7 @@ namespace Proyecto_Integrador_Prestamos.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Prestamo> Prestamos { get; set; }
         public DbSet<Sede> Sedes { get; set; }
+        public DbSet<Precio> Precios { get; set; }
 
 
 

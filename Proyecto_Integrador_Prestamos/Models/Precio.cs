@@ -8,7 +8,7 @@ namespace Proyecto_Integrador_Prestamos.Models
     {
         [Key]
         public int Id { get; set; }
-        public int DuracionDias { get; set; }
+        public string DuracionDias { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
         public decimal Precio150 { get; set; }
         [Column(TypeName = "decimal(10, 2)")]
