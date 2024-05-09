@@ -66,7 +66,7 @@ namespace Proyecto_Integrador_Prestamos.Controllers
 
             return Ok(new
             {
-                Usuario = new { id = user.idUser, rol = user.Role},
+                Usuario = new { id = user.idUser, rol = user.Role, creatorUser = user.creatorUser},
                 Token = user.Token,
                 Message = "Login Success!"
             });;
@@ -101,9 +101,7 @@ namespace Proyecto_Integrador_Prestamos.Controllers
                 return BadRequest(new  {Message = pass});
             }
 
-            //if(userObj.PrimarySid == null || userObj.PrimarySid == "" || userObj.PrimarySid == "0") {
-            //    userObj.PrimarySid = userObj.idUser.ToString();
-            //}
+            
 
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
             userObj.Role = userObj.Role ?? "Admin";

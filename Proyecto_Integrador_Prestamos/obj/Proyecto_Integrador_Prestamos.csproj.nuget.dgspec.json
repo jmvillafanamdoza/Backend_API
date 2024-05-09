@@ -1,24 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\proy\\git_alt2\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj": {}
+    "C:\\Users\\jmvil\\OneDrive\\Escritorio\\back git alejandro\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj": {}
   },
   "projects": {
-    "D:\\proy\\git_alt2\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj": {
+    "C:\\Users\\jmvil\\OneDrive\\Escritorio\\back git alejandro\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\proy\\git_alt2\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
+        "projectUniqueName": "C:\\Users\\jmvil\\OneDrive\\Escritorio\\back git alejandro\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
         "projectName": "Proyecto_Integrador_Prestamos",
-        "projectPath": "D:\\proy\\git_alt2\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "D:\\proy\\git_alt2\\Backend_API\\Proyecto_Integrador_Prestamos\\obj\\",
+        "projectPath": "C:\\Users\\jmvil\\OneDrive\\Escritorio\\back git alejandro\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
+        "packagesPath": "C:\\Users\\jmvil\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\jmvil\\OneDrive\\Escritorio\\back git alejandro\\Backend_API\\Proyecto_Integrador_Prestamos\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\jmvil\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +22,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\sdk\\7.0.304\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -93,7 +88,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.304\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     }

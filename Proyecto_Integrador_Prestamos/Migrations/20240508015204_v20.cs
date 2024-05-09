@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Proyecto_Integrador_Prestamos.Migrations
 {
-    public partial class v1 : Migration
+    public partial class v20 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

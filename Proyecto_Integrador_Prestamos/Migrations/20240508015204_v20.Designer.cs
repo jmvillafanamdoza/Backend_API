@@ -12,8 +12,8 @@ using Proyecto_Integrador_Prestamos.Context;
 namespace Proyecto_Integrador_Prestamos.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240504231046_v1")]
-    partial class v1
+    [Migration("20240508015204_v20")]
+    partial class v20
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
