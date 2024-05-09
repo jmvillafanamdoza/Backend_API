@@ -42,6 +42,10 @@ namespace Proyecto_Integrador_Prestamos.Repositories
         {
             return await dbContext.Prestamos.Where(p => p.idPrestatario == idPrestatario).ToListAsync();
         }
+        public async Task<IEnumerable<Prestamo>> GetPrestamoByIdPrestamista(int idPrestamista)
+        {
+            return await dbContext.Prestamos.Where(p => p.idPrestamista == idPrestamista).ToListAsync();
+        }
 
         public async Task<Prestamo> UpdatePrestamo(Prestamo prestamo)
         {

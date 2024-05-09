@@ -27,6 +27,12 @@ namespace Proyecto_Integrador_Prestamos.Controllers
             return StatusCode(StatusCodes.Status200OK, await prestamoRepository.GetPrestamoByIdPrestatario(idPrestatario));
         }
 
+        [HttpGet("getPrestamoByIdPrestamista")]
+        public async Task<ActionResult<IEnumerable<Prestamista>>> GetPrestamoByIdPrestamista(int idPrestamista)
+        {
+            return StatusCode(StatusCodes.Status200OK, await prestamoRepository.GetPrestamoByIdPrestamista(idPrestamista));
+        }
+
         [HttpPost]
         [Route("CrearPrestamo")]
         public async Task<ActionResult<Prestamo>> CreatePrestamo(Prestamo prestamo)

@@ -67,5 +67,8 @@ namespace Proyecto_Integrador_Prestamos.Repositories
         {
             return await _context.Prestamistas.Include(j => j.User).Where(p => p.User.creatorUser == creatorUser).ToListAsync();
         }
+
+        
+
     }
 }
