@@ -2,6 +2,7 @@
 using Proyecto_Integrador_Prestamos.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Proyecto_Integrador_Prestamos.Models.DTO;
 
 namespace Proyecto_Integrador_Prestamos.Controllers
 {
@@ -54,6 +55,28 @@ namespace Proyecto_Integrador_Prestamos.Controllers
         public async Task<ActionResult<bool>> DeletePrestamo(int numPrestamo)
         {
             return StatusCode(StatusCodes.Status200OK, await prestamoRepository.DeletePrestamo(numPrestamo));
+        }
+
+        [HttpPut]
+        [Route("ActualizarEstadoPrestamo/{nroPrestamo}")]
+        public async Task<IActionResult> UpdateEstadoPrestamo(int nroPrestamo, [FromBody] EstadoDto estado)
+        {
+            try
+            {
+                Prestamo prestamo = await prestamoRepository.FindAsync(nroPrestamo);
+                if (prestamo == null)
+                {
+                    return NotFound("Préstamo no encontrado.");
+                }
+
+                prestamo.Estado = estado.NuevoEstado;
+                await prestamoRepository.UpdatePrestamo(prestamo);  // Asegúrate de que este método exista y esté implementado correctamente.
+                return Ok(prestamo);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server error: " + ex.Message);
+            }
         }
     }
 }

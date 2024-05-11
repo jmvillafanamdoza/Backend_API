@@ -53,5 +53,15 @@ namespace Proyecto_Integrador_Prestamos.Repositories
             await dbContext.SaveChangesAsync();
             return prestamo;
         }
+        public async Task<Prestamo> FindAsync(int nroPrestamo)
+        {
+            var prestamo = await dbContext.Prestamos.FindAsync(nroPrestamo);
+            if (prestamo == null)
+            {
+                throw new Exception("Préstamo no encontrado");
+            }
+            return prestamo;
+        }
+
     }
 }
