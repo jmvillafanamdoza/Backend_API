@@ -5,6 +5,7 @@ namespace Proyecto_Integrador_Prestamos.Repositories
     public interface IPrestamistaRepository
     {
         public Task<IEnumerable<Prestamista>> GetPrestamistaByCreatorUser(string creatorUser);
+        public Task<IEnumerable<Prestamista>> GetPrestamistaByIdSede(int idSede);
         Task<int?> GetPrestamistaIdByUserIdAsync(int userId);
         public Task<IEnumerable<Prestamista>> GetPrestamista();
         public Task<Prestamista> CreatePrestamista(Prestamista prestamista);

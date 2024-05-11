@@ -17,6 +17,7 @@ namespace Proyecto_Integrador_Prestamos.Context
         public DbSet<Prestamo> Prestamos { get; set; }
         public DbSet<Sede> Sedes { get; set; }
         public DbSet<Precio> Precios { get; set; }
+        public DbSet<Cuota> Cuotas { get; set; }
 
 
 
@@ -29,6 +30,8 @@ namespace Proyecto_Integrador_Prestamos.Context
             modelBuilder.Entity<Prestamo>().ToTable("Prestamo");
             modelBuilder.Entity<Prestatario>().ToTable("Prestatario");
             modelBuilder.Entity<Sede>().ToTable("Sede");
+            modelBuilder.Entity<Cuota>().ToTable("Cuotas");
+
 
         }
     }

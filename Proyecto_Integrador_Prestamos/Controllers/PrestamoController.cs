@@ -71,6 +71,26 @@ namespace Proyecto_Integrador_Prestamos.Controllers
 
                 prestamo.Estado = estado.NuevoEstado;
                 await prestamoRepository.UpdatePrestamo(prestamo);  // Asegúrate de que este método exista y esté implementado correctamente.
+                                                                    // Si el estado nuevo es "APROBADO", crea las cuotas
+                if (estado.NuevoEstado == "APROBADO")
+                {
+                    for (int i = 0; i < prestamo.diasDuracion; i++)
+                    {
+                        var cuota = new Cuota
+                        {
+                            NroPrestamo = prestamo.NroPrestamo,
+                            IdPrestatario = prestamo.idPrestatario,
+                            NroCuota = i + 1,
+                            FechaCuota = DateTime.Today.AddDays(i),
+                            pagoDiario = prestamo.pagoDiario,
+                            Estado = "Pendiente"
+                        };
+                        // Asumiendo que tienes un método para agregar cuotas en tu repositorio
+                        await prestamoRepository.AddCuota(cuota);
+                    }
+                }
+
+                await prestamoRepository.SaveChangesAsync();
                 return Ok(prestamo);
             }
             catch (Exception ex)

@@ -14,6 +14,7 @@ namespace Proyecto_Integrador_Prestamos.Repositories
         {
             this.dbContext = dbContext;
         }
+
         public async Task<Prestamo> CreatePrestamo(Prestamo prestamo)
         {
             dbContext.Prestamos.Add(prestamo);
@@ -61,6 +62,18 @@ namespace Proyecto_Integrador_Prestamos.Repositories
                 throw new Exception("Préstamo no encontrado");
             }
             return prestamo;
+        }
+        public async Task AddCuota(Cuota cuota)
+        {
+            if (cuota == null) throw new ArgumentNullException(nameof(cuota));
+
+            await dbContext.Cuotas.AddAsync(cuota);
+            // Nota: No llames aquí a SaveChangesAsync(), para permitir más flexibilidad en la transacción.
+        }
+
+        public async Task SaveChangesAsync()
+        {
+            await dbContext.SaveChangesAsync();
         }
 
     }

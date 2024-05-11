@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Proyecto_Integrador_Prestamos.Context;
 
@@ -11,9 +12,10 @@ using Proyecto_Integrador_Prestamos.Context;
 namespace Proyecto_Integrador_Prestamos.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    partial class AppDBContextModelSnapshot : ModelSnapshot
+    [Migration("20240511182252_v24")]
+    partial class v24
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -44,6 +46,9 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     b.Property<int>("NroPrestamo")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("fechaFinVigencia")
+                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("pagoDiario")
                         .HasColumnType("decimal(18,2)");

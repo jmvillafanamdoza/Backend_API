@@ -12,6 +12,7 @@ namespace Proyecto_Integrador_Prestamos.Repositories
             _context = context;
         }
 
+       
         public async Task<Precio> CreatePrecio(Precio precio)
         {
             _context.Precios.Add(precio);

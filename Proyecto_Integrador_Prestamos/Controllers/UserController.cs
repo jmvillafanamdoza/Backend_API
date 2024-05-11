@@ -123,9 +123,9 @@ namespace Proyecto_Integrador_Prestamos.Controllers
         //fin del register method
 
         [HttpGet("getUserById")]
-        public async Task<ActionResult<User>> GetClientesById(int clienteId)
+        public async Task<ActionResult<User>> GetUserById(int userId)
         {
-            return StatusCode(StatusCodes.Status200OK, await _userRepository.GetUserById(clienteId));
+            return StatusCode(StatusCodes.Status200OK, await _userRepository.GetUserById(userId));
         }
 
 
