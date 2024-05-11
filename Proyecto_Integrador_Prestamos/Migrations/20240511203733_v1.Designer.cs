@@ -12,8 +12,8 @@ using Proyecto_Integrador_Prestamos.Context;
 namespace Proyecto_Integrador_Prestamos.Migrations
 {
     [DbContext(typeof(AppDBContext))]
-    [Migration("20240511182252_v24")]
-    partial class v24
+    [Migration("20240511203733_v1")]
+    partial class v1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -46,9 +46,6 @@ namespace Proyecto_Integrador_Prestamos.Migrations
 
                     b.Property<int>("NroPrestamo")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("fechaFinVigencia")
-                        .HasColumnType("datetime2");
 
                     b.Property<decimal>("pagoDiario")
                         .HasColumnType("decimal(18,2)");

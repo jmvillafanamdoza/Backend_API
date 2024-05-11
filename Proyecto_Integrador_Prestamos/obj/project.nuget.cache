@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Q3wv+ultR3dgLUcDvw38NT4RRfCYZDnj0Yo8Q5Tl0hgZG31g+Rofh+raKHM+DrZrnNzv4mg6Q86UPlQx/D8xdA==",
+  "dgSpecHash": "msBkTjEukfowIiH+ycptTNFrJw14WPXG6hE4Q/lsgZhc2UOl2d+KtLOnqTZzc8lvZKXBt4kpMqVwQfoL0yKUOg==",
   "success": true,
-  "projectFilePath": "D:\\proy\\git\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
+  "projectFilePath": "D:\\proy\\Nueva carpeta\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.11\\microsoft.aspnetcore.authentication.jwtbearer.6.0.11.nupkg.sha512",

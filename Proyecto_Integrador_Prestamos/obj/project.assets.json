@@ -2493,11 +2493,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\proy\\git\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
+      "projectUniqueName": "D:\\proy\\Nueva carpeta\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
       "projectName": "Proyecto_Integrador_Prestamos",
-      "projectPath": "D:\\proy\\git\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
+      "projectPath": "D:\\proy\\Nueva carpeta\\Backend_API\\Proyecto_Integrador_Prestamos\\Proyecto_Integrador_Prestamos.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\proy\\git\\Backend_API\\Proyecto_Integrador_Prestamos\\obj\\",
+      "outputPath": "D:\\proy\\Nueva carpeta\\Backend_API\\Proyecto_Integrador_Prestamos\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

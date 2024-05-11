@@ -27,11 +27,6 @@ namespace Proyecto_Integrador_Prestamos.Controllers
             return StatusCode(StatusCodes.Status200OK, await prestamistaRepository.GetPrestamistaByIdSede(idSede));
         }
 
-        [HttpGet("getPrestamistaByIdSede")]
-        public async Task<ActionResult<IEnumerable<Prestamista>>> GetPrestamistaByIdSede(int idSede)
-        {
-            return StatusCode(StatusCodes.Status200OK, await prestamistaRepository.GetPrestamistaByIdSede(idSede));
-        }
 
         [HttpGet]
         [Route("GetPrestamista")]
