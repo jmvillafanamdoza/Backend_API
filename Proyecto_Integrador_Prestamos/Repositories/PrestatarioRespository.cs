@@ -63,5 +63,16 @@ namespace Proyecto_Integrador_Prestamos.Repositories
             return await dbContext.Prestatarios.Include(j => j.User).Where(p => p.User.creatorUser == creatorUser).ToListAsync();
 
         }
+
+        public async Task<Prestatario> GetPrestatarioById(int prestatarioId)
+        {
+            var prestatario = await dbContext.Prestatarios.Where(p => p.IdPrestatario == prestatarioId).FirstOrDefaultAsync();
+
+            if (prestatario == null)
+            {
+                return null;
+            }
+            return prestatario;
+        }
     }
 }
