@@ -73,6 +73,13 @@ namespace Proyecto_Integrador_Prestamos.Repositories
         }
 
 
+<<<<<<< HEAD
 
+=======
+        public async Task<IEnumerable<Prestamista>> GetPrestamistaByIdSede(int idSede)
+        {
+            return await _context.Prestamistas.Where(p => p.idSede == idSede).ToListAsync();
+        }
+>>>>>>> e56a21d95abc9268928db6379bd875c60b03b263
     }
 }
